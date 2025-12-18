@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SevAI Results</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div class="results-page">
+
+    <div class="results-header">
+        <h1>SevAI Results</h1>
+        <p>Here are the public services & schemes matching your query</p>
+        <a href="index.html" class="back-link">← Back to Search</a>
+    </div>
+
+    <div id="resultsContainer"></div>
+
+</div>
+
+<script>
+async function loadResults(query) {
+    try {
+        const response = await fetch("http://localhost:5000/api/services/find", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query })
+        });
+
+        const data = await response.json();
+        const container = document.getElementById("resultsContainer");
+        const datasetResults = data.dataset || [];
+
+        if (datasetResults.length === 0) {
+            container.innerHTML = "<p class='empty'>No services matched your search.</p>";
+            return;
+        }
+
+        container.innerHTML = datasetResults.map(item => `
+            <div class="result-card">
+                <div class="card-top">
+                    <h2>${item.service_name}</h2>
+                    <span class="tag">${item.category}</span>
+                </div>
+
+                <p class="desc">${item.description}</p>
+
+                <div class="meta">🏛 ${item.department}</div>
+
+                <div class="section">
+                    <h4>📄 Required Documents</h4>
+                    <ul>
+                        ${item.required_documents.map(d => `<li>${d}</li>`).join("")}
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4>🏢 Offline Application</h4>
+                    <p>${item.offline_process?.office_name || "Not available"}</p>
+                </div>
+
+                ${item.online_link ? `
+                    <a class="apply-btn" href="${item.online_link}" target="_blank">
+                        🌐 Apply Online
+                    </a>
+                ` : ""}
+            </div>
+        `).join("");
+
+    } catch (err) {
+        document.getElementById("resultsContainer").innerHTML =
+            "<p class='empty'>Failed to fetch results.</p>";
+    }
+}
+
+window.onload = () => {
+    const query = localStorage.getItem("query") || "";
+    if (query) loadResults(query);
+};
+</script>
+
+</body>

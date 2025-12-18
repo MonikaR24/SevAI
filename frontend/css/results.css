@@ -1,0 +1,56 @@
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f1f5f9;
+  padding: 40px;
+}
+
+/* Card */
+.card {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* Title */
+.card h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* Description */
+.card p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Section headings */
+.card h4 {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+/* Lists */
+.card ul {
+  padding-left: 20px;
+}
+
+.card ul li {
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+/* Online Button */
+.card a[target="_blank"] {
+  display: inline-block;
+  margin-top: 16px;
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  text-decoration: none;
+}

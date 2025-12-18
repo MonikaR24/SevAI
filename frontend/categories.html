@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Service Categories</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.cats { width: 85%; margin: 50px auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 20px; }
+.cat-tile { padding: 25px; text-align: center; border-radius: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(140,0,255,0.2); box-shadow: 0 0 15px #00ffe033; transition: 0.3s; cursor: pointer; }
+.cat-tile:hover { transform: translateY(-6px); box-shadow: 0 0 25px #00ffe0, 0 0 20px #8c00ff; }
+</style>
+</head>
+<body>
+
+<div class="header">Explore Service Categories</div>
+
+<div class="cats">
+    <div class="cat-tile">Electricity</div>
+    <div class="cat-tile">Traffic</div>
+    <div class="cat-tile">Health</div>
+    <div class="cat-tile">Documents</div>
+    <div class="cat-tile">Scholarships</div>
+    <div class="cat-tile">Ration</div>
+    <div class="cat-tile">Police</div>
+    <div class="cat-tile">Others</div>
+</div>
+
+<div class="footer"><a href="index.html" class="card-link">Go Back</a></div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

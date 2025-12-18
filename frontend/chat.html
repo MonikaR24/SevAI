@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with AI Assistant</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .chat-section { width: 70%; margin: 50px auto; }
+        .chat-box { height: 60vh; padding: 20px; overflow-y: auto; background: rgba(255,255,255,0.05); border-radius: 18px; border: 1px solid rgba(140,0,255,0.2); }
+        .msg { margin: 15px 0; max-width: 70%; padding: 14px; border-radius: 14px; line-height: 1.6; }
+        .ai { background: rgba(140,0,255,0.15); border-left: 2px solid #8c00ff; }
+        .user { background: rgba(0,255,224,0.15); border-right: 2px solid #00ffe0; margin-left: auto; }
+        .chat-input { display: flex; gap: 10px; margin-top: 15px; }
+        .chat-input input { flex: 1; padding: 15px; border-radius: 12px; border: 2px solid #00ffe0; background: rgba(0,0,0,0.4); color: white; }
+        .chat-input button { width: 60px; border-radius: 12px; border: none; background: #8c00ff; color: #00ffe0; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="header">Chat with AI Assistant</div>
+
+<div class="chat-section">
+    <div class="chat-box" id="chatBox">
+        <div class="msg ai">Hello! Describe your problem, and I will guide you to the right government service.</div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button id="sendBtn">➤</button>
+    </div>
+</div>
+
+<div class="footer"><a href="index.html" class="card-link">Go Back</a></div>
+
+<script src="assets/js/app.js"></script>
+<script>
+const sendBtn = document.getElementById("sendBtn");
+const userInput = document.getElementById("userInput");
+const chatBox = document.getElementById("chatBox");
+
+sendBtn.addEventListener("click", () => {
+    const text = userInput.value.trim();
+    if(text === "") return;
+    const userMsg = document.createElement("div");
+    userMsg.classList.add("msg","user");
+    userMsg.textContent = text;
+    chatBox.appendChild(userMsg);
+
+    const aiMsg = document.createElement("div");
+    aiMsg.classList.add("msg","ai");
+    aiMsg.textContent = "AI Suggestion: Please check the corresponding service.";
+    chatBox.appendChild(aiMsg);
+
+    userInput.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+});
+</script>
+
+</body>
+</html>
